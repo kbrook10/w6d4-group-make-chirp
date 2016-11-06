@@ -21,7 +21,7 @@ class Signup extends React.Component {
       // formData.append('file', this.state.file) --> Add later
       console.log(formData)
 
-      fetch('https://70d64e2c.ngrok.io/signup', {
+      fetch('https://polar-sea-81260.herokuapp.com/signup', {
         body: formData,
         method: 'POST',
         // headers: {
@@ -35,7 +35,7 @@ class Signup extends React.Component {
     uploadedHandler(response) {
       console.log(response)
       if (typeof response.username != 'undefined') {
-        sessionStorage.setItem('chirply', response.api_token);
+        sessionStorage.setItem('sessionToken', response.api_token);
         // TODO: Needs to direct to the chirps view page...
         window.location.href = 'index.html';
       }
