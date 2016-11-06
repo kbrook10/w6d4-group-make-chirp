@@ -2,32 +2,30 @@ import React from 'react'
 
 class ChirpProfile extends React.Component {
   constructor(props) {
-    super(props)
-    this.profileData = this.profileData.bind(this)
-    this.state= {
-      username:'',
-      email:''
-    }
-  }
+   super(props)
+   this.state = {
+     file: ''
+   }
+ }
+ componentDidMount(){
+   fetch('https://polar-sea-81260.herokuapp.com/user/?api_token=' + sessionStorage.getItem('chirply'))
+   .then(response => response.json())
+   .then((response) => { this.setState ({file: 'https://polar-sea-81260.herokuapp.com' + response.user.file})
+ })
+}
 
-  profileData() {
-    var data = new FormData()
-    data.append('username', this.state.username)
-    data.append('email', this.state.email)
+//avatar_id
 
-    fetch('https://polar-sea-81260.herokuapp.com', {
-      method: 'Get',
-      body: data
-    })
-    .then(response => response.json())
-    .then(function(response){
-        console.log(response)
-    })
-
-  }
 
 
   render() {
+//     var users = this.state.users.map((user, i) => {
+//             if (user.avatar === null) {
+//                 user.avatar = 'http://robohash.org/' + i
+//             } else {
+//                 user.avatar = ('https://immense-harbor-69502.herokuapp.com' + user.avatar)
+//             }
+// })
     return <div className="col-sm-3">
       <div className="panel panel-default">
         <div className="panel-body">
